@@ -3,7 +3,7 @@
 A FastAPI backend with two parts:
 
 - **Account API** — registration, email verification, and JWT-authenticated access to the current user's profile.
-- **Agent 1 (business discovery)** — finds local businesses with a weak online presence (low rating, few reviews, no or broken website) for a given city + category, and stores them as leads. Agent 2 (outreach) is out of scope.
+- **Agent (business discovery)** — finds local businesses with a weak online presence (low rating, few reviews, no or broken website) for a given city + category, and stores them as leads. Agent 2 (outreach) is out of scope.
 
 ## Setup
 
@@ -14,7 +14,7 @@ pip install -r requirements.txt
 Copy-Item .env.example .env
 ```
 
-Create a PostgreSQL database, set `DATABASE_URL` and a long random `JWT_SECRET_KEY` in `.env`. For Agent 1, also set `GOOGLE_PLACES_API_KEY` (a Google Cloud key with "Places API (New)" enabled). `LEAD_MIN_RATING` and `LEAD_MIN_REVIEWS` control the weak-presence filter thresholds and default to `3.5` and `10`. Then run:
+Create a PostgreSQL database, set `DATABASE_URL` and a long random `JWT_SECRET_KEY` in `.env`. For Agent , also set `GOOGLE_PLACES_API_KEY` (a Google Cloud key with "Places API (New)" enabled). `LEAD_MIN_RATING` and `LEAD_MIN_REVIEWS` control the weak-presence filter thresholds and default to `3.5` and `10`. Then run:
 
 ```powershell
 uvicorn app.main:app --reload
@@ -30,7 +30,7 @@ The application creates tables for a new development database at startup. Use mi
 - `POST /api/v1/user/login` — returns a bearer JWT for an active account.
 - `GET`, `PATCH`, `DELETE /api/v1/user/me` — require `Authorization: Bearer <access_token>` and operate only on the caller.
 
-**Leads (Agent 1)**
+**Leads (Agent )**
 - `POST /api/v1/leads/generate` — body `{"city": "...", "category": "..."}`. Runs the discovery pipeline for that search and returns the newly stored leads.
 - `GET /api/v1/leads` — lists stored leads, optionally filtered by `city` and `category`, with a `limit` (default 50, max 200).
 
@@ -39,7 +39,7 @@ The application creates tables for a new development database at startup. Use mi
 
 SMTP delivery is intentionally optional for local development. Do not expose the API publicly without rate limiting, a real email delivery/retry workflow, and database migrations.
 
-## Agent 1 pipeline
+## Agent pipeline
 
 For a given `city` + `category`:
 
