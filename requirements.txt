@@ -12,3 +12,6 @@ email-validator==2.3.0
 sqlalchemy==2.0.52
 asyncpg==0.31.0
 PyJWT==2.10.1
+
+# HTTP client (Agent 1 lead sources)
+httpx==0.28.1

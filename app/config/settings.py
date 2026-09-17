@@ -38,6 +38,13 @@ class Settings(BaseSettings):
     SMTP_FROM_EMAIL: str = ""
     SMTP_TIMEOUT_SECONDS: float = 10.0
 
+    # --- Lead discovery (Agent 1) ---
+    GOOGLE_PLACES_API_KEY: str = ""
+    # A listing is kept as a lead if it falls short on rating, review count,
+    # or has no/a broken website (any one of these is enough).
+    LEAD_MIN_RATING: float = 3.5
+    LEAD_MIN_REVIEWS: int = 10
+
     @model_validator(mode="after")
     def validate_production_settings(self) -> "Settings":
         if self.ENVIRONMENT == "production" and self.JWT_SECRET_KEY == "change-this-development-secret-before-production":

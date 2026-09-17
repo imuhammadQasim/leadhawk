@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 
 from app.config.settings import get_settings
 from app.models.base import Base
+from app.models.lead import Lead  # noqa: F401 - registers model metadata before create_all
 from app.models.user import User  # noqa: F401 - registers model metadata before create_all
 
 settings = get_settings()
