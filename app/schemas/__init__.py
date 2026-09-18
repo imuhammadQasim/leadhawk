@@ -1,3 +1,5 @@
+#iska kaam mainly schemas ko ek central place se import/export karna hai.
+
 """Pydantic request and response models."""
 
 from app.schemas.health import HealthResponse

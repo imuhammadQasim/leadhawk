@@ -1,3 +1,5 @@
+
+#ye dedupe.py hai. Iska purpose hai duplicate leads ko identify karne mein help karna.
 import re
 
 _BUSINESS_SUFFIXES = re.compile(r"\b(llc|inc|ltd|co|corp|company)\b")

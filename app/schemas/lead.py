@@ -1,3 +1,5 @@
+
+#ye lead.py schema file hai. Iska kaam Lead API ke request aur response ka structure define karna hai.
 from datetime import datetime
 
 from pydantic import BaseModel, Field

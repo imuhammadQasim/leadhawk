@@ -1,3 +1,5 @@
+#This file helps usto application ki saari configuration ek jagah manage karna, especially .env se secrets/config values load karna.
+
 from functools import lru_cache
 from typing import Literal
 
@@ -29,7 +31,7 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str = "change-this-development-secret-before-production"
     JWT_ALGORITHM: Literal["HS256"] = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-    
+    #30 min kai baad token expire hogha
     # --- SMTP ---
     SMTP_HOST: str = "smtp.gmail.com"
     SMTP_PORT: int = 587
@@ -38,7 +40,7 @@ class Settings(BaseSettings):
     SMTP_FROM_EMAIL: str = ""
     SMTP_TIMEOUT_SECONDS: float = 10.0
 
-    # --- Lead discovery (Agent 1) ---
+    # --- Lead discovery (Agent) ---
     GOOGLE_PLACES_API_KEY: str = ""
     # A listing is kept as a lead if it falls short on rating, review count,
     # or has no/a broken website (any one of these is enough).
@@ -50,7 +52,7 @@ class Settings(BaseSettings):
         if self.ENVIRONMENT == "production" and self.JWT_SECRET_KEY == "change-this-development-secret-before-production":
             raise ValueError("JWT_SECRET_KEY must be changed in production")
         return self
-
+#Iska purpose hai production mein unsafe default JWT secret accidentally use na ho.
 
 @lru_cache
 def get_settings() -> Settings:
